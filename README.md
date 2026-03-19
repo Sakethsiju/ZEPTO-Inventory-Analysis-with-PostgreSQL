@@ -1,83 +1,106 @@
-# ZEPTO-Inventory-Analysis-with-PostgreSQL
-This project provides a detailed analysis of a ZEPTO inventory dataset using PostgreSQL. The goal was to extract meaningful insights from the data, such as product performance, inventory valuation, and stock management. The analysis was conducted by writing and executing a series of SQL queries.
+# Zepto Inventory Analysis with PostgreSQL
 
-# Project Files
-ZEPTO (DATASET).csv: The raw dataset containing detailed information on products, including category, price, weight, and stock status.
+**Tools:** PostgreSQL · SQL  
+**Dataset:** Zepto product inventory (Kaggle)  
+**Domain:** Retail Analytics · Inventory Management · Business Intelligence
 
-ZEPTO(QUERIES).sql: A complete set of SQL queries used for data exploration and analysis. This file includes the table creation statement and all the queries that were executed to derive the insights.
+---
 
-ZEPTO (INSIGHTS Q&A).pdf: A summary of the key findings, including the approach and insights for each question posed.
+## 📌 Project Overview
 
-# Tools and Technologies Used
-PostgreSQL: A powerful, open-source relational database system used for storing and querying the data.
+This project analyzes a **Zepto quick-commerce inventory dataset** using PostgreSQL to extract actionable insights on product performance, pricing strategy, revenue contribution, and logistics planning. Every query is designed to answer a real business question faced by inventory and operations teams.
 
-Kaggle: The platform from which the dataset was sourced.
+---
 
-SQL (Structured Query Language): The language used to interact with the database and perform all data analysis.
+## 🎯 Business Problems Solved
 
-# Key Insights and Methodology
-The project followed a methodical approach to answer specific business questions about the inventory. Here's a brief overview of the key findings and the SQL techniques used to get them.
+| # | Business Question | Finding |
+|---|---|---|
+| 1 | Which products offer the best value to customers? | Top 10 highest-discount products identified across categories |
+| 2 | Which high-value products are out of stock? | High-MRP products with `outOfStock = TRUE` — direct revenue loss |
+| 3 | Which categories drive the most revenue? | Revenue contribution ranked by category using SUM of selling price × quantity |
+| 4 | How heavy is the inventory by category? | Total weight calculated for logistics and storage planning |
 
-1. Top 10 Best-Value Products
-Objective: To identify products with the highest discount percentage, providing insights into promotional strategies.
+---
 
-Methodology:
+## 🔍 Key Findings
 
-Products were filtered to find unique entries.
+### 1. Best-Value Products (Top 10 Discounts)
+- Filtered and ranked products by `discountPercent` in descending order
+- Highest discounts applied across a wide variety — from snacks to food essentials
+- Insight: Discount strategy is broad, not category-specific — suggesting customer acquisition focus over margin optimization
 
-They were then sorted in descending order of discountPercent.
+### 2. High-MRP Out-of-Stock Products
+- Filtered products where `outOfStock = TRUE` and `mrp` exceeds a high-value threshold
+- Identified high-demand, high-value items unavailable to customers
+- Insight: These represent direct missed revenue — restocking priority list delivered to management
 
-The results were limited to the top 10 to highlight the best deals.
+### 3. Revenue by Category
+- Used `SUM(discountedSellingPrice × availableQuantity)` grouped by category
+- Top revenue contributors: Munchies, Cooking Essentials
+- Insight: High-revenue categories should receive priority in stock replenishment planning
 
-Insight: The highest discounts were often applied to a wide variety of products, from snacks like wafers to food essentials, suggesting a strategy to attract customers across different categories.
+### 4. Inventory Weight & Logistics
+- Calculated `SUM(weightInGms × availableQuantity)` grouped by category
+- Lightest: Meats, Fish & Eggs (fast turnover, limited shelf life)
+- Heaviest: Munchies (large stable stock)
+- Insight: Weight distribution directly informs warehouse layout and delivery route planning
 
-2. Products with High MRP but Out of Stock
-Objective: To find high-value products that are currently unavailable, which could indicate a potential revenue loss.
+---
 
-Methodology:
+## 🛠️ Tools & Techniques
 
-The query filtered for products where outOfStock was TRUE.
+| Tool | Usage |
+|---|---|
+| **PostgreSQL** | Table creation, data import, SQL querying, aggregation |
+| **SQL** | Filtering, GROUP BY, ORDER BY, SUM, COUNT, subqueries |
+| **Kaggle** | Dataset source |
 
-A condition was added to select only those with a mrp greater than a specific threshold.
+---
 
-The results were sorted by mrp to highlight the most expensive out-of-stock items.
+## 📁 Project Files
 
-Insight: This analysis revealed critical stock management issues, identifying high-demand items that are not in stock and are likely being missed by customers.
+```
+ZEPTO-Inventory-Analysis-with-PostgreSQL/
+│
+├── ZEPTO(DATASET).csv              # Raw inventory dataset
+├── ZEPTO(QUERIES).sql              # All SQL queries used for analysis
+├── ZEPTO(INSIGHTS Q&A).pdf         # Key findings and business insights
+│
+└── README.md
+```
 
-3. Estimated Revenue for Each Category
-Objective: To calculate the potential revenue contribution of each product category.
+## 💡 Business Recommendations
 
-Methodology:
+| Area | Recommendation |
+|---|---|
+| Out-of-stock items | Immediate restocking of high-MRP products to prevent revenue loss |
+| Discount strategy | Narrow discounts to underperforming categories instead of broad application |
+| Category investment | Double down on Munchies and Cooking Essentials — highest revenue contributors |
+| Logistics planning | Prioritize warehouse space for heaviest categories based on weight analysis |
 
-The SUM() aggregate function was used to calculate the total revenue by multiplying discountedSellingPrice with availableQuantity.
+---
 
-Results were grouped by category and ordered to see which categories contribute the most or least to the total revenue.
+## 🚀 How to Run This Project
 
-Insight: This provided a clear picture of which product categories drive the most revenue for the business, highlighting the importance of categories like Munchies and Cooking Essentials.
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/Sakethsiju/ZEPTO-Inventory-Analysis-with-PostgreSQL.git
+   ```
+2. Set up PostgreSQL on your system
+3. Open `ZEPTO(QUERIES).sql` — run the `CREATE TABLE` statement first
+4. Import `ZEPTO(DATASET).csv` into the `zepto` table
+5. Run each query section by section
+6. Open `ZEPTO(INSIGHTS Q&A).pdf` to view pre-computed findings
 
-4. Inventory Weight and Logistics
-Objective: To calculate the total physical weight of the inventory by category, which is crucial for logistics and storage planning.
+---
 
-Methodology:
+## 📫 Connect with Me
 
-The weightInGms was multiplied by availableQuantity for each product.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/enugu-saketh-reddy-21k91a6631)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sakethsiju63@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Sakethsiju)
 
-The results were then summed up and grouped by category.
+---
 
-The output was ordered to show the lightest to the heaviest categories.
-
-Insight: This analysis showed that perishable goods like "Meats, Fish & Eggs" had the lowest inventory weight, likely due to their quick turnover and limited shelf life. In contrast, "Munchies" had the highest inventory weight, suggesting a large, stable stock.
-
-# How to Replicate This Analysis
-To run this analysis yourself, follow these steps:
-
-Set up PostgreSQL: Make sure you have PostgreSQL installed and running on your system.
-
-Create the Table: Run the CREATE TABLE statement from the ZEPTO(QUERIES).sql file to create the zepto table in your database.
-
-Import the Data: Import the ZEPTO (DATASET).csv file into the zepto table.
-
-Execute Queries: Run the SQL queries from ZEPTO(QUERIES).sql to perform the analysis.
-
-# Conclusion
-This project demonstrates the power of SQL and relational databases for in-depth business intelligence. By using a series of targeted queries, we were able to transform raw data into actionable insights for inventory management, pricing, and logistics.
+*Part of my Data Analyst portfolio — using SQL to solve real inventory and operations problems.*
